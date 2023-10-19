@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const squares = document.querySelectorAll('#board div');
-    squares.forEach(square => square.classList.add('square'));
-    const playerX = 'X';
+    const playeX = 'X';
     const playerO = 'O';
     let xTurn = true;
     const status = document.getElementById('status');
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     newGameButton.addEventListener('click', function () {
         squares.forEach(square => {
-            square.classList.remove(playerX);
+            square.classList.remove(playeX);
             square.classList.remove(playerO);
             square.textContent = '';
             status.textContent = 'Move your mouse over a square and click to play an X or an O.';
@@ -29,33 +28,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
     squares.forEach(square => {
         square.classList.add('square');
 
         square.addEventListener('click', function () {
-            if (!square.classList.contains(playerX) && !square.classList.contains(playerO)) {
-                if (xTurn) {
-                    square.classList.add(playerX);
-                    square.textContent = 'X';
-                    if (checkForWin(playerX)) {
-                        status.textContent = "Congratulations! X is the Winner!";
-                        status.classList.add('you-won');
-                    }
-                } else {
-                    square.classList.add(playerO);
-                    square.textContent = 'O';
-                    if (checkForWin(playerO)) {
-                        status.textContent = "Congratulations! O is the Winner!";
-                        status.classList.add('you-won');
-                    }
-                }
-                xTurn = !xTurn;
+            if (square.classList.contains(playeX) || square.classList.contains(playerO)) {
+                return; // Do nothing if the square is already taken
             }
+
+            if (xTurn) {
+                square.classList.add(playeX);
+                square.textContent = 'X';
+                if (checkForWin(playeX)) {
+                    status.textContent = "Congratulations! X is the Winner!";
+                    status.classList.add('you-won');
+                }
+            } else {
+                square.classList.add(playerO);
+                square.textContent = 'O';
+                if (checkForWin(playerO)) {
+                    status.textContent = "Congratulations! O is the Winner!";
+                    status.classList.add('you-won');
+                }
+            }
+            xTurn = !xTurn;
         });
 
         square.addEventListener('mouseover', function () {
-            if (!square.classList.contains(playerX) && !square.classList.contains(playerO)) {
+            if (!square.classList.contains(playeX) && !square.classList.contains(playerO)) {
                 square.classList.add('hover');
             }
         });
