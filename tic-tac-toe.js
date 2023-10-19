@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const playerO = 'O';
     let xTurn = true;
     const status = document.getElementById('status');
+    const newGameButton = document.querySelector('.btn');
 
     const wins = [
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
