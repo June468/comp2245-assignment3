@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    newGameButton.addEventListener('click', function () {
+        squares.forEach(square => {
+            square.classList.remove(playerX);
+            square.classList.remove(playerO);
+            square.textContent = '';
+            status.textContent = 'Move your mouse over a square and click to play an X or an O.';
+            status.classList.remove('you-won');
+        });
+    });
+
+
     squares.forEach(square => {
         square.classList.add('square');
 
