@@ -19,5 +19,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 xTurn = !xTurn;
             }
         });
+
+        square.addEventListener('mouseover', function () {
+            if (!square.classList.contains(playerX) && !square.classList.contains(playerO)) {
+                square.classList.add('hover');
+            }
+        });
+
+        square.addEventListener('mouseout', function () {
+            square.classList.remove('hover');
+        });
     });
 });
